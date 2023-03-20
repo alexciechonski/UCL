@@ -1,0 +1,105 @@
+#include <stdio.h>
+//string copy
+void my_strcpy(char s1[],char s2[]){
+  int i;
+  
+    for(i=0;s1[i]!='\0';i++){
+      s2[i]=s1[i];
+      //printf("%c",s2[i]);
+    }
+  s2[i]='\0';
+}
+
+//string compare
+int my_strcmp(char s1[],char s2[]){
+int result=0;
+  for(int j=0;j<s1[j]!='\0';j++){
+    if(s1[j]<s2[j]){ //less than
+      result=-1;
+      return result;
+    } 
+    if(s1[j]>s2[j]){
+      result=1;
+      return result; //more than
+    }
+    }
+  return result;
+}
+
+
+  struct user{
+    int ID;
+    char username[40];
+    int numFriends;
+    int friends[100]; //<-
+  };  
+
+int main(void) {
+  char name[40],name1[40],name2[40];
+  int option, index1,index2;
+  int userNumber = 0;
+  
+  printf("1 = new user\n2 = new relationship\n3 = print friends of a given user\n");
+  //ask for a new user
+
+  struct user network[100];
+  
+  while(1){
+    printf("pick an option:");
+    scanf("%d",&option);
+    
+    if(option==1){
+      printf("enter a new user:");
+      scanf("%s",name);
+      my_strcpy(name,network[userNumber].username);
+      network[userNumber].ID=userNumber;
+      network[userNumber].numFriends=0;
+      for(int j=0;j<100;j++){
+        network[userNumber].friends[j]=0;
+        }
+      userNumber++;
+      }
+    
+    if(option==2){
+      printf("enter the first name:");
+      scanf("%s",name1);
+      printf("enter the second name:");
+      scanf("%s",name2);
+      for(int i=0;i<100;i++){
+        if(my_strcmp(name1,network[i].username)==0){
+          index1=i;
+        }
+      }
+      for(int j=0;j<100;j++){
+        if(my_strcmp(name1,network[j].username)==0){
+          int index2=j;
+        }
+      }
+      
+      network[index2].friends[index1]=1;
+      network[index1].friends[index2]=1;
+      network[index1].numFriends+=1;
+      network[index2].numFriends+=1;
+      
+      if(option==3){
+        printf("enter name:");
+        scanf("%s",name1);
+        for(int i=0;i<100;i++){
+          if(my_strcmp(name1,network[i].username)==0){
+            index1=i;
+          }
+        }
+        for(int k=0;k<100;k++){
+          if(network[index1].friends[k]==1){
+            //print the name
+            printf("%s",network[k].username);
+          }
+        }
+      }
+
+      
+    }
+    
+    
+    }
+}
