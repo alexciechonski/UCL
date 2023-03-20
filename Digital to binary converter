@@ -1,0 +1,47 @@
+/*
+input a number 
+divide the number by two
+the remainder is the least significant bit 
+repeat
+*/
+
+#include<stdio.h>    
+#include<stdlib.h> 
+#include<string.h>
+#include<ctype.h>
+
+int main(){  
+  int array[10],n,i;    
+  int input;
+
+// the user enters the number
+    do{
+      printf("\nEnter a 3 digit natural number: ");
+      input=scanf("%d",&n);
+      
+      if(n>999){
+        printf("The enterred number is too large! \n");
+        main();
+      }
+      
+      if(input != 1){
+        int c;
+        printf("The input is not a number! \n");
+        while ((c = getchar()) !='\n' && (c != EOF));
+      }
+      
+    }while (input != 1);
+      
+// keep dividing by 2 and find the remainders
+    for(i=0;n>0;i++){    
+      array[i]=n%2;    
+      n=n/2;    
+    }    
+  
+// print the remainders in the reverse order
+  printf("\nBinary of Given Number is=");    
+  for(i=i-1;i>=0;i--){
+    printf("%d",array[i]);    
+    }     
+  main();
+}
